@@ -1,0 +1,29 @@
+###
+GET  http://localhost:5000/user/getAll
+
+###
+POST  http://localhost:5000/user/register
+Content-Type: application/json
+
+{
+    "nama_user": "pandhu",
+    "foto": "pandhu.jpg",
+    "email": "pandhu@gmail.com",
+    "role": "admin",
+    "password": "admin"
+}
+
+###
+GET  http://localhost:5000/user/find/1
+
+###
+PUT  http://localhost:5000/user/1
+Content-Type: application/json
+
+{
+    "nama_user": "Asfina",
+    "foto": "asfina.jpg",
+    "email": "asfina@gmail.com",
+    "role": "admin",
+    "password": "admin"
+}
