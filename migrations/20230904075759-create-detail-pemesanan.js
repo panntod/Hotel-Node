@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('detail_pemesanans', {
-      id_detail_pemesanan: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -14,7 +14,7 @@ module.exports = {
         allowNull:false,
         references:{
           model: "pemesanans",
-          key: "id_pemesanan"
+          key: "id"
         }
       },
       id_kamar: {
@@ -22,7 +22,7 @@ module.exports = {
         allowNull:false,
         references:{
           model: "kamars",
-          key: "id_kamar"
+          key: "id"
         }
       },
       tgl_akses: {
