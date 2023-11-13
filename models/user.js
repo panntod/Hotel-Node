@@ -6,12 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     static associate(models) {
       this.hasMany(models.pemesanan, {
-        foreignKey: 'id_user', as: 'pemesanan'
+        foreignKey: 'id', as: 'pemesanan'
       })
     }
   }
   user.init({
-    id_user: DataTypes.INTEGER,
     nama_user: DataTypes.STRING,
     foto: DataTypes.TEXT,
     email: DataTypes.STRING,

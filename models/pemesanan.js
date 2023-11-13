@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.user)
       this.belongsTo(models.tipe_kamar)
-      this.hasOne(models.details_pemesanan)
+      this.hasOne(models.detail_pemesanan)
     }
   }
   pemesanan.init({
