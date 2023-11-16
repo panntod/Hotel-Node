@@ -1,5 +1,5 @@
 const userModel = require("../models/index").user;
-const upload = require("./upload_foto").single("foto");
+const { uploadUser } = require("./upload_foto");
 const fs = require(`fs`);
 const path = require("path");
 const bcrypt = require("bcrypt");
@@ -59,7 +59,7 @@ exports.getUserById = async (req, res) => {
 };
 
 exports.addUser = async (req, res) => {
-  upload(req, res, async (error) => {
+  uploadUser.single('foto')(req, res, async (error) => {
     if (error) return res.json({ message: error });
 
     if (!req.file) return res.json({ message: `Nothing to upload` });
@@ -91,7 +91,7 @@ exports.addUser = async (req, res) => {
 };
 
 exports.updateUser = (req, res) => {
-  upload(req, res, async (error) => {
+  uploadUser.single('foto')(req, res, async (error) => {
     if (error) return res.json({ message: error });
 
     if (!req.file) return res.json({ message: "Nothing to upload" });
