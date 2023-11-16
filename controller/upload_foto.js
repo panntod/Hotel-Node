@@ -15,7 +15,7 @@ const createStorage = (destination) =>
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
       }
-      cb(null, path.join(__dirname, `./images/${destination}`));
+      cb(null, dir);
     },
 
     filename: (req, file, cb) => {
