@@ -49,7 +49,9 @@ const createMulter = (destination) =>
   });
 
   const uploadUser = createMulter('foto-user')
+  const uploadTipekamar = createMulter('foto-tipe-kamar')
 
 module.exports = { 
-  uploadUser
+  uploadUser,
+  uploadTipekamar
 };
