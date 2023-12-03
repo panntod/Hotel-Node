@@ -29,7 +29,7 @@ Content-Type: application/json
 }
 
 ###
-PUT  http://localhost:5000/kamar
+GET  http://localhost:5000/kamar/getAll
 Content-Type: application/json
 
 {
