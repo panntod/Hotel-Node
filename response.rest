@@ -27,3 +27,15 @@ Content-Type: application/json
     "role": "admin",
     "password": "admin"
 }
+
+###
+PUT  http://localhost:5000/kamar
+Content-Type: application/json
+
+{
+    "nama_user": "Asfina",
+    "foto": "asfina.jpg",
+    "email": "asfina@gmail.com",
+    "role": "admin",
+    "password": "admin"
+}

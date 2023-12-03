@@ -10,3 +10,5 @@ app.post("/tipe", kamarController.availableRoomByTipe)
 app.post("/", kamarController.addKamar)
 app.put("/:id", kamarController.updateRoom)
 app.delete("/:id", kamarController.deleteKamar)
+
+module.exports = app;
