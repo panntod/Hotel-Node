@@ -36,24 +36,33 @@ exports.getAllType = async (req, res) => {
 };
 
 exports.findType = async (req, res) => {
-  let id_tipe_kamar = req.params.id;
+  try {
+    let id_tipe_kamar = req.params.id;
 
-  let tipe = await tipekamarModel.findOne({
-    where: {
-      [Op.and]: [{ id: { [Op.substring]: id_tipe_kamar } }],
-    },
-  });
+    let tipe = await tipekamarModel.findOne({
+      where: {
+        [Op.and]: [{ id: { [Op.substring]: id_tipe_kamar } }],
+      },
+    });
 
-  const typeWithPhotoString = tipe.map((type) => {
-    return {
-      ...type.get(),
-      foto: type.foto.toString("utf-8"), // Mengonversi buffer ke string
-    };
-  });
+    const typeWithPhotoString = tipe.map((type) => {
+      return {
+        ...type.get(),
+        foto: type.foto.toString("utf-8"), // Mengonversi buffer ke string
+      };
+    });
 
-  return res.json({
-    success: true,
-    data: typeWithPhotoString,
-    message: `Room have been loaded`,
-  });
+    return res.json({
+      success: true,
+      data: typeWithPhotoString,
+      message: `Room have been loaded`,
+    });
+  } catch (error) {
+    console.log(`Error in getAllType ${error}`);
+    return res.status(404).json({
+      success: false,
+      data: null,
+      message: "Data type not found",
+    });
+  }
 };
