@@ -127,7 +127,7 @@ exports.updateTipeKamar = (req, res) => {
             });
           }
 
-          newTipe.foto = req.file.filename
+          newTipe.foto = req.file.filename;
         }
       } catch (error) {
         console.error(err);
@@ -140,3 +140,41 @@ exports.updateTipeKamar = (req, res) => {
   });
 };
 
+exports.deleteTipe = async (req, res) => {
+  let idTipe = req.params.id;
+  try {
+    const selectedTipe = await tipekamarModel.findOne({
+      where: { id: idTipe },
+    });
+    const oldFoto = selectedTipe.foto;
+    const finalTipeFoto = path.join(
+      __dirname,
+      "../image/tipe-kamar",
+      oldFoto.toString()
+    );
+
+    if (fs.existsSync(finalTipeFoto)) {
+      fs.unlinkSync(finalTipeFoto, (err) => console.log(idTipe, err));
+    }
+
+    tipekamarModel
+      .destroy({ where: { id: idTipe } })
+      .then((result) => {
+        return res.status(200).json({
+          success: true,
+          message: "Data tipe kamar has been deleted",
+        });
+      })
+      .catch((err) => {
+        return res.status(404).json({
+          success: false,
+          message: err.message,
+        });
+      });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
