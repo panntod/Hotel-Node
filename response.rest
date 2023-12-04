@@ -1,41 +1,13 @@
 ###
-GET  http://localhost:5000/user/getAll
-
-###
-POST  http://localhost:5000/user/register
+POST  http://localhost:5000/login/
 Content-Type: application/json
 
 {
-    "nama_user": "pandhu",
-    "foto": "pandhu.jpg",
-    "email": "pandhu@gmail.com",
-    "role": "admin",
-    "password": "admin"
+     "email": "asfina@gmail.com", 
+     "password": "admin"
 }
 
 ###
-GET  http://localhost:5000/user/find/1
-
-###
-PUT  http://localhost:5000/user/1
-Content-Type: application/json
-
-{
-    "nama_user": "Asfina",
-    "foto": "asfina.jpg",
-    "email": "asfina@gmail.com",
-    "role": "admin",
-    "password": "admin"
-}
-
-###
-GET  http://localhost:5000/kamar/getAll
-Content-Type: application/json
-
-{
-    "nama_user": "Asfina",
-    "foto": "asfina.jpg",
-    "email": "asfina@gmail.com",
-    "role": "admin",
-    "password": "admin"
-}
+GET http://localhost:5000/login/ HTTP/1.1
+Host: localhost:5000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoxLCJyb2xlIjoidXNlciIsIm5hbWFfdXNlciI6ImFzZmluYSIsImlhdCI6MTcwMTY2OTI0MX0.qTtb058HaF1BXPzfRctLD0nandWFG7qXYviHneRxaR8
