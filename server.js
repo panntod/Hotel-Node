@@ -10,9 +10,11 @@ app.use(bodyParser.json());
 
 const userRouter = require('./routes/user_route')
 const kamarRouter = require('./routes/kamar_route')
+const tipeKamarRouter = require('./routes/tipe_kamar_route')
 
 app.use(`/user`, userRouter);
 app.use(`/kamar`, kamarRouter);
+app.use(`/tipe`, tipeKamarRouter);
 
 app.listen(port, () => {
   console.log(`Server listen to ${port}`);
