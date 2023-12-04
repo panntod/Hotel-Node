@@ -67,16 +67,16 @@ exports.findType = async (req, res) => {
   }
 };
 
-exports.addTipe = async (req, res) => {
+exports.addType = async (req, res) => {
   uploadTipekamar.single("foto")(req, res, async (error) => {
     if (error) return res.json({ message: error });
 
     if (!req.file) return res.json({ message: `Nothing to upload` });
 
     let newTipe = {
-      nama_tipe_kamar: req.nama_tipe_kamar,
-      harga: req.harga,
-      deskripsi: req.deskripsi,
+      nama_tipe_kamar: req.body.nama_tipe_kamar,
+      harga: req.body.harga,
+      deskripsi: req.body.deskripsi,
       foto: req.file.filename,
     };
 
@@ -85,7 +85,7 @@ exports.addTipe = async (req, res) => {
       .then((result) => {
         return res.json({
           success: true,
-          data: newTipe,
+          data: result,
           message: "New tipe has been inserted",
         });
       })
@@ -98,7 +98,7 @@ exports.addTipe = async (req, res) => {
   });
 };
 
-exports.updateTipeKamar = (req, res) => {
+exports.updateTypeKamar = (req, res) => {
   uploadTipekamar.single("foto")(req, res, async (error) => {
     if (error) return res.json({ message: error });
 
@@ -140,7 +140,7 @@ exports.updateTipeKamar = (req, res) => {
   });
 };
 
-exports.deleteTipe = async (req, res) => {
+exports.deleteType = async (req, res) => {
   let idTipe = req.params.id;
   try {
     const selectedTipe = await tipekamarModel.findOne({
