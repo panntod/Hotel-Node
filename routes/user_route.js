@@ -2,11 +2,12 @@ const express = require("express");
 const app = express();
 
 const userController = require("../controller/user_controller");
+const auth = require("../Middleware/Auth");
 
-app.get("/getAll", userController.getAllUser);
-app.get("/find/:id", userController.getUserById);
-app.post("/register", userController.addUser);
-app.put("/:id", userController.updateUser);
-app.delete("/:id", userController.deleteUser);
+app.get("/getAll", auth.authVerify,  userController.getAllUser);
+app.get("/find/:id", auth.authVerify, userController.getUserById);
+app.post("/", userController.addUser);
+app.put("/:id", auth.authVerify, userController.updateUser);
+app.delete("/:id", auth.authVerify, userController.deleteUser);
 
 module.exports = app;
