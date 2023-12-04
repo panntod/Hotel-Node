@@ -1,14 +1,15 @@
 const express = require("express");
 const app = express();
 
+const auth = require(`../Middleware/Auth`);
 const kamarController = require("../controller/kamar_controller")
 
-app.get("/getAll", kamarController.getAllKamar)
-app.get("/find/:id", kamarController.getKamarById)
-app.post("/", kamarController.availableRoom)
-app.post("/tipe", kamarController.availableRoomByTipe)
-app.post("/", kamarController.addKamar)
-app.put("/:id", kamarController.updateRoom)
-app.delete("/:id", kamarController.deleteKamar)
+app.get("/", auth.authVerify, kamarController.getAllKamar)
+app.get("/find/:id", auth.authVerify, kamarController.getKamarById)
+app.post("/available", kamarController.availableKamar)
+app.post("/availableTipe", kamarController.availableKamarByTipe)
+app.post("/", auth.authVerify, kamarController.addKamar)
+app.put("/:id", auth.authVerify, kamarController.updateKamar)
+app.delete("/:id", auth.authVerify, kamarController.deleteKamar)
 
 module.exports = app;
