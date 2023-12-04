@@ -97,3 +97,46 @@ exports.addTipe = async (req, res) => {
       });
   });
 };
+
+exports.updateTipeKamar = (req, res) => {
+  uploadTipekamar.single("foto")(req, res, async (error) => {
+    if (error) return res.json({ message: error });
+
+    if (!req.file) return res.json({ message: "Nothing to upload" });
+    let idTipe = req.params.id;
+    let newTipe = {
+      nama_tipe_kamar: req.nama_tipe_kamar,
+      harga: req.harga,
+      deskripsi: req.deskripsi,
+      foto: req.file.filename,
+    };
+
+    if (req.file) {
+      try {
+        const selectedTipe = await tipekamarModel.findOne({
+          where: { id: idTipe },
+        });
+        const oldFoto = selectedTipe.foto;
+
+        if (oldFoto) {
+          const finalTipeFoto = path.join(__dirname, "../images/tipe-kamar");
+
+          if (fs.existsSync(finalTipeFoto)) {
+            fs.unlinkSync(finalTipeFoto, (err) => {
+              if (err) console.log(idUser, err);
+            });
+          }
+
+          newTipe.foto = req.file.filename
+        }
+      } catch (error) {
+        console.error(err);
+        return res.status(500).json({
+          success: false,
+          message: "Error updating tipe",
+        });
+      }
+    }
+  });
+};
+
