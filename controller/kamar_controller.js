@@ -92,7 +92,7 @@ exports.addKamar = async (req, res) => {
   }
 };
 
-exports.updateRoom = async (req, res) => {
+exports.updateKamar = async (req, res) => {
   try {
     const { nama_tipe_kamar, nomor_kamar } = req.body;
     const tipeId = await tipeModel.findOne({
@@ -156,7 +156,7 @@ exports.deleteKamar = (req, res) => {
     });
 };
 
-exports.availableRoom = async (req, res) => {
+exports.availableKamar = async (req, res) => {
   const { check_in, check_out } = req.body;
 
   if (!check_in || !check_out) {
@@ -209,7 +209,7 @@ exports.availableRoom = async (req, res) => {
   }
 };
 
-exports.availableRoomByTipe = async (req, res) => {
+exports.availableKamarByTipe = async (req, res) => {
     const { check_in, check_out, nama_tipe_kamar } = req.body;
   
     const tgl1 = new Date(check_in);
