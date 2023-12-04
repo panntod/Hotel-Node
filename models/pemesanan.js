@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   pemesanan.init({
-    id_pemesanan: DataTypes.INTEGER,
     nomor_pemesanan: DataTypes.INTEGER,
     nama_pemesan: DataTypes.STRING,
     email_pemesan: DataTypes.STRING,

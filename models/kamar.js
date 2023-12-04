@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   kamar.init({
-    id_kamar: DataTypes.INTEGER,
     nomor_kamar: DataTypes.INTEGER,
     id_tipe_kamar: DataTypes.INTEGER,
     harga: DataTypes.INTEGER
