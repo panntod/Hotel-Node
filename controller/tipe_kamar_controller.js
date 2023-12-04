@@ -66,3 +66,34 @@ exports.findType = async (req, res) => {
     });
   }
 };
+
+exports.addTipe = async (req, res) => {
+  uploadTipekamar.single("foto")(req, res, async (error) => {
+    if (error) return res.json({ message: error });
+
+    if (!req.file) return res.json({ message: `Nothing to upload` });
+
+    let newTipe = {
+      nama_tipe_kamar: req.nama_tipe_kamar,
+      harga: req.harga,
+      deskripsi: req.deskripsi,
+      foto: req.file.filename,
+    };
+
+    tipekamarModel
+      .create(newTipe)
+      .then((result) => {
+        return res.json({
+          success: true,
+          data: newTipe,
+          message: "New tipe has been inserted",
+        });
+      })
+      .catch((err) => {
+        return res.json({
+          success: false,
+          message: err.message,
+        });
+      });
+  });
+};
