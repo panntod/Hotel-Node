@@ -130,7 +130,7 @@ exports.logout = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       path: "/",
       sameSite: "strict",
-      maxAge: 0, // Setting maxAge to 0 will delete the cookie
+      maxAge: 0,
     });
 
     res.setHeader("Set-Cookie", cookie);
@@ -152,7 +152,7 @@ exports.getUserLogin = async (req, res) => {
     const userData = req.userData;
 
     if (!userData) {
-      return res.json({
+      return res.status(401).json({
         success: false,
         message: "Invalid Token",
         data: null,
@@ -166,10 +166,10 @@ exports.getUserLogin = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
+    return res.status(401).json({
       success: false,
       error: error.message,
-      message: "Internal error",
+      message: "Invalid Token",
     });
   }
 };
